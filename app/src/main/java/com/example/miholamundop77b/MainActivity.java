@@ -1,5 +1,6 @@
 package com.example.miholamundop77b;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -36,7 +37,13 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this ,
                         ActivitySecond.class);
 
-                startActivity(intent);
+                intent.putExtra("para", "4451234564");
+                intent.putExtra("asunto", "Cita Importante");
+                intent.putExtra("mensaje", "Acuda a recibir resultados " +
+                        "lo mas pronto posible");
+
+                //startActivity(intent);
+                startActivityForResult(intent, 1000);
 
             }
         });
@@ -45,6 +52,20 @@ public class MainActivity extends AppCompatActivity {
 
         Log.i("BITACORA", "Paso por el metodo onCreate()");
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode,
+                                    int resultCode,
+                                    @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==1000){
+            if(resultCode==-1){
+                Toast.makeText(this,
+                        "Mensaje enviado exitoso",
+                        Toast.LENGTH_LONG).show();
+            }
+        }
     }
 
     @Override
