@@ -7,19 +7,56 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     TextView txt;
     Button btn;
+    Spinner spn;
+    String [] arrEstados;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        arrEstados =
+                getResources()
+                        .getStringArray(R.array.arrEdos);
+
+
+        ArrayAdapter<String> adp = new
+                ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1,
+                android.R.id.text1,
+                arrEstados);
+
+        spn = findViewById(R.id.spnE);
+
+        spn.setAdapter(adp);
+
+        spn.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView,
+                                       View view, int i, long l) {
+
+                Toast.makeText(MainActivity.this,
+                        ""+((TextView)view.findViewById(android.R.id.text1)).getText(),
+                        Toast.LENGTH_LONG).show();
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
 
         txt = findViewById(R.id.miLbl);
         btn = findViewById(R.id.btn);
