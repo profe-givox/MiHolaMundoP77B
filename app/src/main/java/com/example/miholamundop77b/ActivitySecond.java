@@ -51,6 +51,15 @@ public class ActivitySecond
             }
         });
 
+    }
+
+    public void   btnCancel_click(View v){
+        Intent i = new Intent();
+        i.putExtra("error", "Numero no disponible");
+        setResult(RESULT_CANCELED  , i );
+        finish();
 
     }
+
+
 }

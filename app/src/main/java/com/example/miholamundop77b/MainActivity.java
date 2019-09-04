@@ -60,9 +60,15 @@ public class MainActivity extends AppCompatActivity {
                                     @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode==1000){
-            if(resultCode==-1){
+            if(resultCode==RESULT_OK){
                 Toast.makeText(this,
                         "Mensaje enviado exitoso",
+                        Toast.LENGTH_LONG).show();
+            }else if(resultCode==RESULT_CANCELED){
+                Toast.makeText(this,
+                        "Mensaje NO enviado. \n"+
+                                "Error: "
+                                +data.getStringExtra("error"),
                         Toast.LENGTH_LONG).show();
             }
         }
